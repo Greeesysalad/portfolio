@@ -5,8 +5,17 @@ import Projects from './pages/Projects'
 
 type Page = 'home' | 'about' | 'projects'
 
+// Get initial page from URL hash
+const getInitialPage = (): Page => {
+  const hash = window.location.hash.replace('#', '') as Page
+  if (hash === 'home' || hash === 'about' || hash === 'projects') {
+    return hash
+  }
+  return 'home'
+}
+
 function App() {
-  const [currentPage, setCurrentPage] = useState<Page>('home')
+  const [currentPage, setCurrentPage] = useState<Page>(getInitialPage)
 
   // Handle browser back/forward buttons
   useEffect(() => {
@@ -17,9 +26,14 @@ function App() {
       }
     }
 
+    // Initialize history on first load
+    if (!window.location.hash) {
+      window.history.replaceState({ page: currentPage }, '', `#${currentPage}`)
+    }
+
     window.addEventListener('popstate', handlePopState)
     return () => window.removeEventListener('popstate', handlePopState)
-  }, [])
+  }, [currentPage])
 
   const handleNavigate = (page: Page) => {
     setCurrentPage(page)
