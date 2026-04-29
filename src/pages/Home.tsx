@@ -7,8 +7,8 @@ interface HomeProps {
   onNavigate: (page: Page) => void
 }
 
-const nameFont = { fontFamily: "'Merriweather',sans-serif" }
-const bodyFont = { fontFamily: "'Montserrat', sans-serif" } 
+const nameFont = { fontFamily: "'Merriweather', serif" }
+const bodyFont = { fontFamily: "'Quicksand', sans-serif"}
 
 const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   return (

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Home from './pages/Home'
 import About from './pages/About'
 import Projects from './pages/Projects'
@@ -8,14 +8,32 @@ type Page = 'home' | 'about' | 'projects'
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home')
 
+  // Handle browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      const page = event.state?.page as Page | undefined
+      if (page) {
+        setCurrentPage(page)
+      }
+    }
+
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
+  const handleNavigate = (page: Page) => {
+    setCurrentPage(page)
+    window.history.pushState({ page }, '', `#${page}`)
+  }
+
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <Home onNavigate={setCurrentPage} />
+        return <Home onNavigate={handleNavigate} />
       case 'about':
-        return <About onNavigate={setCurrentPage} />
+        return <About onNavigate={handleNavigate} />
       case 'projects':
-        return <Projects onNavigate={setCurrentPage} />
+        return <Projects onNavigate={handleNavigate} />
     }
   }
 
@@ -24,19 +42,19 @@ function App() {
       <nav className="nav">
         <button 
           className={`nav-btn ${currentPage === 'home' ? 'active' : ''}`}
-          onClick={() => setCurrentPage('home')}
+          onClick={() => handleNavigate('home')}
         >
           Home
         </button>
         <button 
           className={`nav-btn ${currentPage === 'about' ? 'active' : ''}`}
-          onClick={() => setCurrentPage('about')}
+          onClick={() => handleNavigate('about')}
         >
           About
         </button>
         <button 
           className={`nav-btn ${currentPage === 'projects' ? 'active' : ''}`}
-          onClick={() => setCurrentPage('projects')}
+          onClick={() => handleNavigate('projects')}
         >
           Projects
         </button>
