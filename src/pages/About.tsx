@@ -7,32 +7,26 @@ interface AboutProps {
 }
 
 const techStack = [
-  'TypeScript', 'React', 'Node.js', 'Python', 'Git', 'Docker'
+  'TypeScript', 'C/C++', 'Python', 'Git', 'MATLAB', 'Solidworks','Autodesk Inventor', 'blender', 'M365 suite', 'Microsoft Power Platform'
 ]
 
 const socials = [
-  { name: 'GitHub', url: 'https://github.com' },
-  { name: 'LinkedIn', url: 'https://linkedin.com' },
-  { name: 'Twitter', url: 'https://twitter.com' }
+  { name: 'GitHub', url: 'https://github.com/Greeesysalad' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/ted-yao-154320324/' },
 ]
 
 const About: React.FC<AboutProps> = ({ onNavigate }) => {
   return (
     <div className="page about-page">
       <div className="about-container">
-        <div className="about-image">
-          <div className="image-placeholder">
-            <span>Your Photo</span>
-          </div>
-        </div>
         <div className="about-content">
           <h2>About Me</h2>
           <p className="bio">
-            Hi! I'm a software engineer passionate about building great products. 
-            I specialize in full-stack development and love working with modern technologies.
+            Undergrad student at McMaster University studying Mechatronics and
+            biomedical engineering.
           </p>
           <div className="tech-stack">
-            <h3>Tech Stack</h3>
+            <h3>Technologies</h3>
             <div className="tech-tags">
               {techStack.map((tech) => (
                 <span key={tech} className="tech-tag">{tech}</span>
@@ -54,6 +48,11 @@ const About: React.FC<AboutProps> = ({ onNavigate }) => {
                 </a>
               ))}
             </div>
+          </div>
+        </div>
+        <div className="about-image">
+          <div className="image-placeholder">
+            <span>Your Photo</span>
           </div>
         </div>
       </div>

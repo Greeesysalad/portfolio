@@ -98,6 +98,12 @@ body {
 
 .hero {
   text-align: center;
+  background: #0a0a0a;
+  border: 2px solid #ffffff;
+  padding: 3rem 4rem;
+  border-radius: 12px;
+  position: relative;
+  z-index: 10;
 }
 
 .name {
@@ -105,6 +111,7 @@ body {
   font-weight: 700;
   letter-spacing: -0.03em;
   margin-bottom: 0.5rem;
+  color: var(--text-primary);
 }
 
 .tagline {
@@ -121,18 +128,19 @@ body {
 }
 
 .home-btn {
-  background: var(--bg-secondary);
+  background: transparent;
   border: 1px solid var(--border);
-  color: var(--text-primary);
-  padding: 0.875rem 2rem;
-  font-size: 0.875rem;
+  color: var(--text-secondary);
+  padding: 0.5rem 1.25rem;
+  font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  border-radius: 4px;
 }
 
 .home-btn:hover {
-  background: var(--bg-tertiary);
+  color: var(--text-primary);
   border-color: var(--text-muted);
 }
 
@@ -144,26 +152,29 @@ body {
 }
 
 .about-container {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   align-items: start;
 }
 
 .about-image {
-  position: sticky;
-  top: 100px;
+  position: relative;
+  width: 120px;
+  height: 120px;
 }
 
 .image-placeholder {
-  aspect-ratio: 3/4;
+  width: 120px;
+  height: 120px;
   background: var(--bg-secondary);
   border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-muted);
-  font-size: 0.875rem;
+  font-size: 0.75rem;
+  border-radius: 50%;
 }
 
 .about-content h2 {
@@ -202,9 +213,10 @@ body {
 .tech-tag {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
+  border-radius: 9999px;
 }
 
 .social-links {
