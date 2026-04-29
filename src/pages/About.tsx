@@ -7,7 +7,7 @@ interface AboutProps {
 }
 
 const techStack = [
-  'TypeScript', 'C/C++', 'Python', 'Git', 'MATLAB', 'Solidworks','Autodesk Inventor', 'blender', 'M365 suite', 'Microsoft Power Platform'
+  'Vite', 'Python', 'Git', 'MATLAB', 'Solidworks','Autodesk Inventor', 'blender', 'M365 suite', 'Microsoft Power Platform'
 ]
 
 const socials = [
