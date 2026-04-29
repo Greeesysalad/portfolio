@@ -15,9 +15,16 @@ interface Doodle {
   flip: number;
 }
 
+interface Particle extends Doodle {
+  vx: number;
+  vy: number;
+  alpha: number;
+}
+
 const DoodleRain: React.FC<DoodleRainProps> = ({ count = 12 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const doodles = useRef<Doodle[]>([]);
+  const particles = useRef<Particle[]>([]);
   const imgRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
@@ -26,7 +33,6 @@ const DoodleRain: React.FC<DoodleRainProps> = ({ count = 12 }) => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Set canvas size
     const setSize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -34,12 +40,10 @@ const DoodleRain: React.FC<DoodleRainProps> = ({ count = 12 }) => {
     setSize();
     window.addEventListener('resize', setSize);
 
-    // Load image
     const img = new window.Image();
     img.src = doodle;
     imgRef.current = img;
 
-    // Initialize doodles
     const resetDoodle = (): Doodle => ({
       x: Math.random() * canvas.width,
       y: -Math.random() * canvas.height,
@@ -49,41 +53,92 @@ const DoodleRain: React.FC<DoodleRainProps> = ({ count = 12 }) => {
       spinSpeed: (Math.random() - 0.5) * 0.04,
       flip: Math.random() < 0.5 ? 1 : -1,
     });
+
     doodles.current = Array.from({ length: count }, resetDoodle);
+
+    const handleMouseDown = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      doodles.current.forEach((d, i) => {
+        const dx = mouseX - d.x;
+        const dy = mouseY - d.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        // Collision detection (radius check)
+        if (distance < d.size / 2) {
+          // Create fragments
+          for (let j = 0; j < 8; j++) {
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = 2 + Math.random() * 4;
+            particles.current.push({
+              ...d,
+              size: d.size / 3, // Smaller "mini-cats"
+              vx: Math.cos(angle) * velocity,
+              vy: Math.sin(angle) * velocity,
+              alpha: 1,
+            });
+          }
+          // Respawn the original cat at the top
+          doodles.current[i] = resetDoodle();
+        }
+      });
+    };
+
+    canvas.addEventListener('mousedown', handleMouseDown);
 
     let running = true;
     const animate = () => {
       if (!running) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // 1. Update & Draw Falling Cats
       doodles.current.forEach((doodleObj, i) => {
-        // Update
         doodleObj.y += doodleObj.speed;
         doodleObj.spin += doodleObj.spinSpeed;
         if (doodleObj.y > canvas.height + doodleObj.size) {
           doodles.current[i] = resetDoodle();
         }
-        // Draw
+
         if (imgRef.current?.complete) {
           ctx.save();
           ctx.translate(doodleObj.x, doodleObj.y);
           ctx.rotate(doodleObj.spin);
           ctx.scale(doodleObj.flip, 1);
-          ctx.drawImage(
-            imgRef.current,
-            -doodleObj.size / 2,
-            -doodleObj.size / 2,
-            doodleObj.size,
-            doodleObj.size
-          );
+          ctx.drawImage(imgRef.current, -doodleObj.size / 2, -doodleObj.size / 2, doodleObj.size, doodleObj.size);
           ctx.restore();
         }
       });
+
+      // 2. Update & Draw Particles (Explosions)
+      particles.current.forEach((p, i) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.1; // Simple gravity
+        p.alpha -= 0.02; // Fade out
+        p.spin += p.spinSpeed * 2;
+
+        if (p.alpha <= 0) {
+          particles.current.splice(i, 1);
+        } else if (imgRef.current?.complete) {
+          ctx.save();
+          ctx.globalAlpha = p.alpha;
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.spin);
+          ctx.drawImage(imgRef.current, -p.size / 2, -p.size / 2, p.size, p.size);
+          ctx.restore();
+        }
+      });
+
       requestAnimationFrame(animate);
     };
+
     img.onload = animate;
     return () => {
       running = false;
       window.removeEventListener('resize', setSize);
+      canvas.removeEventListener('mousedown', handleMouseDown);
     };
   }, [count]);
 
@@ -96,8 +151,9 @@ const DoodleRain: React.FC<DoodleRainProps> = ({ count = 12 }) => {
         left: 0,
         width: '100vw',
         height: '100vh',
-        pointerEvents: 'none',
-        zIndex: 0,
+        pointerEvents: 'auto', // Changed to auto so can click
+        zIndex: 10,
+        cursor: 'crosshair',
       }}
     />
   );
