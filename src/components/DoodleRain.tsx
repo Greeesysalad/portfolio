@@ -48,7 +48,7 @@ const DoodleRain: React.FC<DoodleRainProps> = ({ count = 12 }) => {
       x: Math.random() * canvas.width,
       y: -Math.random() * canvas.height,
       size: 60 + Math.random() * 60,
-      speed: 1 + Math.random() * 1.5,
+      speed: 0.2 + Math.random() * 1.5,
       spin: Math.random() * Math.PI * 2,
       spinSpeed: (Math.random() - 0.5) * 0.04,
       flip: Math.random() < 0.5 ? 1 : -1,
