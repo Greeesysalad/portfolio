@@ -28,8 +28,8 @@ const About: React.FC<AboutProps> = ({ onNavigate }) => {
           <h2>About Me</h2>
           <p className="bio">
             Undergrad student at McMaster University studying Mechatronics and
-            biomedical engineering. Click on the falling cats in the homepage for
-            a fun suprise {":)"}
+            biomedical engineering. Click on the falling cats on the homepage for
+            a suprise {":)"}
           </p>
           <div className="tech-stack">
             <h3>Technologies</h3>
