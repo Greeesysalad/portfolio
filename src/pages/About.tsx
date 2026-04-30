@@ -1,4 +1,5 @@
 import React from 'react'
+import pfp from '../assets/TedYao.jpg';
 
 type Page = 'home' | 'about' | 'projects'
 
@@ -7,7 +8,8 @@ interface AboutProps {
 }
 
 const techStack = [
-  'Vite', 'Python', 'Git', 'MATLAB', 'Solidworks','Autodesk Inventor', 'blender', 'M365 suite', 'Microsoft Power Platform'
+  'C/C++', 'Python','vite', 'Git', 'MATLAB', 'Solidworks','Autodesk Inventor', 
+  'blender', 'M365 suite', 'Microsoft Power Platform'
 ]
 
 const socials = [
@@ -20,16 +22,18 @@ const About: React.FC<AboutProps> = ({ onNavigate }) => {
     <div className="page about-page">
       <div className="about-container">
         <div className="about-image">
-          <div className="image-placeholder">
-            <span>Your Photo</span>
-          </div>
+          <img 
+            src={pfp} 
+            alt="Ted Yao" 
+            className="profile-photo"
+          />
         </div>
         <div className="about-content">
           <h2>About Me</h2>
           <p className="bio">
             Undergrad student at McMaster University studying Mechatronics and
             biomedical engineering. Click on the falling cats on the homepage for
-            a suprise {":)"}
+            a surprise {":)"}
           </p>
           <div className="tech-stack">
             <h3>Technologies</h3>
