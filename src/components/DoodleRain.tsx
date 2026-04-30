@@ -26,6 +26,7 @@ const DoodleRain: React.FC<DoodleRainProps> = ({ count = 12 }) => {
   const doodles = useRef<Doodle[]>([]);
   const particles = useRef<Particle[]>([]);
   const imgRef = useRef<HTMLImageElement | null>(null);
+  const lastSpawnX = useRef<number>(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -44,15 +45,25 @@ const DoodleRain: React.FC<DoodleRainProps> = ({ count = 12 }) => {
     img.src = doodle;
     imgRef.current = img;
 
-    const resetDoodle = (): Doodle => ({
-      x: Math.random() * canvas.width,
-      y: -Math.random() * canvas.height,
-      size: 60 + Math.random() * 60,
-      speed: 0.8 + Math.random() * 1.5,
-      spin: Math.random() * Math.PI * 2,
-      spinSpeed: (Math.random() - 0.5) * 0.04,
-      flip: Math.random() < 0.5 ? 1 : -1,
-    });
+    const resetDoodle = (): Doodle => {
+      // Distribute spawn positions more evenly to reduce clustering
+      const segmentWidth = canvas.width / count;
+      const baseX = (lastSpawnX.current % count) * segmentWidth;
+      // Add small random offset within segment (not spanning into neighboring segments)
+      const offset = (Math.random() - 0.5) * segmentWidth * 0.6;
+      const x = Math.max(0, Math.min(canvas.width, baseX + offset));
+      lastSpawnX.current = (lastSpawnX.current + 1) % count;
+      
+      return {
+        x,
+        y: -Math.random() * canvas.height,
+        size: 60 + Math.random() * 60,
+        speed: 1.2 + Math.random() * 2,
+        spin: Math.random() * Math.PI * 2,
+        spinSpeed: (Math.random() - 0.5) * 0.04,
+        flip: Math.random() < 0.5 ? 1 : -1,
+      };
+    };
 
     doodles.current = Array.from({ length: count }, resetDoodle);
 
