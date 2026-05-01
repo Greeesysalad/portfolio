@@ -19,37 +19,11 @@ interface ProjectsProps {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Project One',
-    description: 'A brief description of your first project.',
-    details: 'This is a more detailed description of Project One. Here you can include more information about the technologies used, the challenges faced, and the outcomes achieved. You can also mention your specific role in the project and what you learned from it.',
+    title: 'Lower Limb Exoskeleton',
+    description: 'Designed and prototyped lower-limb exoskeleton components in SolidWorks, utilizing 3D scans to ensure ergonomic fit through iterative design and rapid prototyping.',
+    details: 'details',
     image: 'https://placehold.co/600x400/1a1a1a/white?text=Project+1',
-    github: 'https://github.com',
-    live: 'https://example.com'
-  },
-  {
-    id: 2,
-    title: 'Project Two',
-    description: 'A brief description of your second project.',
-    details: 'This is a more detailed description of Project Two. Include information about the problem you solved, the tech stack you used, and the impact of the project. Mention any notable achievements or metrics.',
-    image: 'https://placehold.co/600x400/1a1a1a/white?text=Project+2',
-    github: 'https://github.com'
-  },
-  {
-    id: 3,
-    title: 'Project Three',
-    description: 'A brief description of your third project.',
-    details: 'This is a more detailed description of Project Three. Go deeper into the architecture, the decisions you made, and what you would do differently if you built it again.',
-    image: 'https://placehold.co/600x400/1a1a1a/white?text=Project+3',
-    github: 'https://github.com',
-    live: 'https://example.com'
-  },
-  {
-    id: 4,
-    title: 'Project Four',
-    description: 'A brief description of your fourth project.',
-    details: 'This is a more detailed description of Project Four. Share your journey, the team size, the timeline, and how the project evolved over time.',
-    image: 'https://placehold.co/600x400/1a1a1a/white?text=Project+4',
-    github: 'https://github.com'
+    github: 'https://github.com/McMaster-Exoskeleton',
   }
 ]
 
