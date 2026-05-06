@@ -35,6 +35,20 @@ function App() {
     return () => window.removeEventListener('popstate', handlePopState)
   }, [currentPage])
 
+  // Handle scroll behavior for projects page
+  useEffect(() => {
+    if (currentPage === 'projects') {
+      document.body.classList.add('no-scroll')
+    } else {
+      document.body.classList.remove('no-scroll')
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('no-scroll')
+    }
+  }, [currentPage])
+
   const handleNavigate = (page: Page) => {
     setCurrentPage(page)
     window.history.pushState({ page }, '', `#${page}`)

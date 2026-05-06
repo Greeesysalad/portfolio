@@ -20,10 +20,17 @@ const projects: Project[] = [
   {
     id: 1,
     title: 'Lower Limb Exoskeleton',
-    description: 'Designed and prototyped lower-limb exoskeleton linkage components in SolidWorks, utilizing 3D scans to ensure ergonomic fit through iterative design and rapid prototyping.',
+    description: 'Mechanical Engineer for McMaster Exoskeleton; A muti-disaplinary design team developing an assistive lower-limb exoskeleton. Responsible for the mechanical structure of the exoskeleton, including the design and testing of custom linkage, waist, and mounting components using SolidWorks.',
     details: 'details',
     image: 'https://placehold.co/600x400/1a1a1a/white?text=Project+1',
     github: 'https://github.com/McMaster-Exoskeleton',
+  },
+  {
+    id: 2,
+    title: 'Adaptive Writing Aid',
+    description: 'Developed a personalized assistive device for a client with Multiple Sclerosis to assist with fine motor writing capabilities; Designed using 3D structured light scanning and mesh modeling to create a custom ergonomic interface precisely matching the user’s hand geometry, ensuring optimal pressure distribution and stability during use. ',
+    details: 'N/A',
+    image: 'https://placehold.co/600x400/1a1a1a/white?text=Project+2',
   }
 ]
 
