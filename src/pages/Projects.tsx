@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 
+import Adaptive1 from '../assets/AdaptiveWritingAid_Use.png'
+import Adaptive2 from '../assets/AdaptiveWritingAid.png'
+import Adaptive3 from '../assets/AdaptiveWritingAid_CAD.png'
+
 type Page = 'home' | 'about' | 'projects'
 
 interface Project {
@@ -7,7 +11,7 @@ interface Project {
   title: string
   description: string
   details: string
-  image: string
+  images: { src: string; caption?: string }[]
   github?: string
   live?: string
 }
@@ -21,21 +25,90 @@ const projects: Project[] = [
     id: 1,
     title: 'Lower Limb Exoskeleton',
     description: 'Mechanical Engineer for McMaster Exoskeleton; A muti-disaplinary design team developing an assistive lower-limb exoskeleton. Responsible for the mechanical structure of the exoskeleton, including the design and testing of custom linkage, waist, and mounting components using SolidWorks.',
-    details: 'details',
-    image: 'https://placehold.co/600x400/1a1a1a/white?text=Project+1',
+    details:
+      '• Optimized part geometries for additive manufacturing to minimize support material and ensure print reliability.\n'+
+      '• Managed tolerances and assembly dimensions using SolidWorks equations to maintain precision across 30+ interdependent components\n'+
+      '• Refined ergonomics through iterative rapid prototyping and physical testing to ensure the design maintained a natural range of motion.\n'+
+      '• Utilized top-down assembly modeling to ensure mechanical fit and kinematic integrity for complex structural linkages.',
+    images: [
+      { src: 'https://placehold.co/600x400/1a1a1a/white?text=Project+1+Image+1', caption: 'Main assembly view' },
+      { src: 'https://placehold.co/600x400/1a1a1a/white?text=Project+1+Image+2', caption: 'Detailed linkage system' },
+      { src: 'https://placehold.co/600x400/1a1a1a/white?text=Project+1+Image+3', caption: 'Final prototype' },
+    ],
     github: 'https://github.com/McMaster-Exoskeleton',
   },
   {
     id: 2,
     title: 'Adaptive Writing Aid',
-    description: 'Developed a personalized assistive device for a client with Multiple Sclerosis to assist with fine motor writing capabilities; Designed using 3D structured light scanning and mesh modeling to create a custom ergonomic interface precisely matching the user’s hand geometry, ensuring optimal pressure distribution and stability during use. ',
-    details: 'N/A',
-    image: 'https://placehold.co/600x400/1a1a1a/white?text=Project+2',
+    description: 'Developed a personalized assistive device for a client with Multiple Sclerosis to assist with fine motor writing capabilities; Designed using 3D structured light scanning and mesh modeling in blender to create a custom ergonomic interface precisely matching the user’s hand geometry, ensuring optimal pressure distribution and stability during use. ',
+    details:
+    '• Collaborated directly with a client with Multiple Sclerosis to develop a personalized assistive writing aid tailored to their specific functional requirements.\n'+
+    '• Utilized 3D scanning to capture high-resolution topological meshes of the user’s hand geometry for precision-fit modeling.\n'+
+    '• Engineered ergonomic housing in Blender using mesh modeling techniques to wrap device geometry around the user’s unique finger orientation.\n'+
+    '• Executed an iterative rapid prototyping workflow with 3D printing to validate grip comfort and mechanical stability through live user trials.',
+    images: [
+      { src: Adaptive1, caption: 'Demonstration of device in use' },
+      { src: Adaptive2, caption: 'Isolated view of device' },
+      { src: Adaptive3, caption: 'CAD model of device in blender' },
+    ],
   }
 ]
 
 const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0)
+  const [cardImageIndex, setCardImageIndex] = useState<{ [key: number]: number }>({})
+
+  const handleSelectProject = (project: Project) => {
+    setSelectedProject(project)
+    setCurrentImageIndex(0)
+  }
+
+  const handlePrevImage = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? selectedProject!.images.length - 1 : prev - 1
+    )
+  }
+
+  const handleNextImage = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    setCurrentImageIndex((prev) =>
+      prev === selectedProject!.images.length - 1 ? 0 : prev + 1
+    )
+  }
+
+  const handlePrevCardImage = (projectId: number, e: React.MouseEvent) => {
+    e.stopPropagation()
+    const project = projects.find((p) => p.id === projectId)!
+    setCardImageIndex((prev) => ({
+      ...prev,
+      [projectId]:
+        prev[projectId] === 0 || prev[projectId] === undefined
+          ? project.images.length - 1
+          : prev[projectId] - 1,
+    }))
+  }
+
+  const handleNextCardImage = (projectId: number, e: React.MouseEvent) => {
+    e.stopPropagation()
+    const project = projects.find((p) => p.id === projectId)!
+    setCardImageIndex((prev) => ({
+      ...prev,
+      [projectId]:
+        prev[projectId] === undefined || prev[projectId] === project.images.length - 1
+          ? 0
+          : prev[projectId] + 1,
+    }))
+  }
+
+  const formatDetailsAsList = (details: string) => {
+    return details
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .map((line) => line.replace(/^•\s*/, ''))
+  }
 
   return (
     <div className="page projects-page">
@@ -45,10 +118,36 @@ const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
           <div 
             key={project.id} 
             className="project-card"
-            onClick={() => setSelectedProject(project)}
+            onClick={() => handleSelectProject(project)}
           >
             <div className="project-image">
-              <img src={project.image} alt={project.title} />
+              <img src={project.images[cardImageIndex[project.id] || 0].src} alt={project.title} />
+              {project.images.length > 1 && (
+                <>
+                  <button
+                    className="gallery-arrow gallery-prev"
+                    onClick={(e) => handlePrevCardImage(project.id, e)}
+                    aria-label="Previous image"
+                  >
+                    ‹
+                  </button>
+                  <button
+                    className="gallery-arrow gallery-next"
+                    onClick={(e) => handleNextCardImage(project.id, e)}
+                    aria-label="Next image"
+                  >
+                    ›
+                  </button>
+                  <div className="gallery-counter">
+                    {(cardImageIndex[project.id] || 0) + 1} / {project.images.length}
+                  </div>
+                </>
+              )}
+              {project.images[cardImageIndex[project.id] || 0].caption && (
+                <div className="card-image-caption">
+                  {project.images[cardImageIndex[project.id] || 0].caption}
+                </div>
+              )}
             </div>
             <div className="project-info">
               <h3>{project.title}</h3>
@@ -94,12 +193,49 @@ const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
               ×
             </button>
             <div className="modal-image">
-              <img src={selectedProject.image} alt={selectedProject.title} />
+              <img src={selectedProject.images[currentImageIndex].src} alt={selectedProject.title} />
+              {selectedProject.images.length > 1 && (
+                <>
+                  <button
+                    className="gallery-arrow gallery-prev"
+                    onClick={handlePrevImage}
+                    aria-label="Previous image"
+                  >
+                    ‹
+                  </button>
+                  <button
+                    className="gallery-arrow gallery-next"
+                    onClick={handleNextImage}
+                    aria-label="Next image"
+                  >
+                    ›
+                  </button>
+                  <div className="gallery-counter">
+                    {currentImageIndex + 1} / {selectedProject.images.length}
+                  </div>
+                </>
+              )}
             </div>
+            {selectedProject.images[currentImageIndex].caption && (
+              <div className="modal-image-caption">
+                {selectedProject.images[currentImageIndex].caption}
+              </div>
+            )}
             <div className="modal-content">
               <h3>{selectedProject.title}</h3>
               <p className="modal-description">{selectedProject.description}</p>
-              <p className="modal-details">{selectedProject.details}</p>
+              {formatDetailsAsList(selectedProject.details).length > 1 ? (
+                <div className="modal-details-group">
+                  <p className="modal-details-label">Highlights</p>
+                  <ul className="modal-details-list">
+                    {formatDetailsAsList(selectedProject.details).map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <p className="modal-details">{selectedProject.details}</p>
+              )}
               <div className="modal-links">
                 {selectedProject.github && (
                   <a 
