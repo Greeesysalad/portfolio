@@ -4,6 +4,9 @@ import Adaptive1 from '../assets/AdaptiveWritingAid_Use.png'
 import Adaptive2 from '../assets/AdaptiveWritingAid.png'
 import Adaptive3 from '../assets/AdaptiveWritingAid_CAD.png'
 
+import Exo1 from '../assets/Exo_CAD.png'
+import Exo2 from '../assets/Exo_ManufacturedParts.png'
+
 type Page = 'home' | 'about' | 'projects'
 
 interface Project {
@@ -31,9 +34,8 @@ const projects: Project[] = [
       '• Refined ergonomics through iterative rapid prototyping and physical testing to ensure the design maintained a natural range of motion.\n'+
       '• Utilized top-down assembly modeling to ensure mechanical fit and kinematic integrity for complex structural linkages.',
     images: [
-      { src: 'https://placehold.co/600x400/1a1a1a/white?text=Project+1+Image+1', caption: 'Main assembly view' },
-      { src: 'https://placehold.co/600x400/1a1a1a/white?text=Project+1+Image+2', caption: 'Detailed linkage system' },
-      { src: 'https://placehold.co/600x400/1a1a1a/white?text=Project+1+Image+3', caption: 'Final prototype' },
+      { src: Exo1, caption: 'SolidWorks assembly of right leg of lower-limb exoskeleton' },
+      { src: Exo2, caption: 'Manufactured exoskeleton linkage parts' },
     ],
     github: 'https://github.com/McMaster-Exoskeleton',
   },
