@@ -4,8 +4,10 @@ import Adaptive1 from '../assets/AdaptiveWritingAid_Use.png'
 import Adaptive2 from '../assets/AdaptiveWritingAid.png'
 import Adaptive3 from '../assets/AdaptiveWritingAid_CAD.png'
 
-import Exo1 from '../assets/Exo_CAD.png'
-import Exo2 from '../assets/Exo_ManufacturedParts.png'
+import Exo1 from '../assets/Exo_Jesse.jpg'
+import Exo2 from '../assets/Exo_closeup.jpg'
+import Exo3 from '../assets/Exo_ManufacturedParts.png'
+import Exo4 from '../assets/Exo_CAD.png'
 
 type Page = 'home' | 'about' | 'projects'
 
@@ -34,8 +36,10 @@ const projects: Project[] = [
       '• Refined ergonomics through iterative rapid prototyping and physical testing to ensure the design maintained a natural range of motion.\n'+
       '• Utilized top-down assembly modeling to ensure mechanical fit and kinematic integrity for complex structural linkages.',
     images: [
-      { src: Exo1, caption: 'SolidWorks assembly of right leg of lower-limb exoskeleton' },
-      { src: Exo2, caption: 'Manufactured exoskeleton linkage parts' },
+      { src: Exo1, caption: 'Full-body view of exoskeleton in operation' },
+      { src: Exo2, caption: 'Detailed view of the lower-limb actuation and structural design' },
+      { src: Exo3, caption: 'SolidWorks assembly of right leg of lower-limb exoskeleton' },
+      { src: Exo4, caption: 'Manufactured exoskeleton linkage parts' },
     ],
     github: 'https://github.com/McMaster-Exoskeleton',
   },
@@ -53,7 +57,20 @@ const projects: Project[] = [
       { src: Adaptive2, caption: 'Isolated view of device' },
       { src: Adaptive3, caption: 'CAD model of device in blender' },
     ],
-  }
+  },
+  {
+    id: 3,
+    title: 'Computer Vision Hand Sign Detector',
+    description: '',
+    details:
+      '• ~\n'+
+      '• ~\n'+
+      '• ~\n'+
+      '• ~',
+    images: [
+    ],
+    github: 'https://github.com/carlzhng/domain-computer-vision',
+  },
 ]
 
 const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
@@ -123,32 +140,38 @@ const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
             onClick={() => handleSelectProject(project)}
           >
             <div className="project-image">
-              <img src={project.images[cardImageIndex[project.id] || 0].src} alt={project.title} />
-              {project.images.length > 1 && (
+              {project.images.length > 0 ? (
                 <>
-                  <button
-                    className="gallery-arrow gallery-prev"
-                    onClick={(e) => handlePrevCardImage(project.id, e)}
-                    aria-label="Previous image"
-                  >
-                    ‹
-                  </button>
-                  <button
-                    className="gallery-arrow gallery-next"
-                    onClick={(e) => handleNextCardImage(project.id, e)}
-                    aria-label="Next image"
-                  >
-                    ›
-                  </button>
-                  <div className="gallery-counter">
-                    {(cardImageIndex[project.id] || 0) + 1} / {project.images.length}
-                  </div>
+                  <img src={project.images[cardImageIndex[project.id] || 0].src} alt={project.title} />
+                  {project.images.length > 1 && (
+                    <>
+                      <button
+                        className="gallery-arrow gallery-prev"
+                        onClick={(e) => handlePrevCardImage(project.id, e)}
+                        aria-label="Previous image"
+                      >
+                        ‹
+                      </button>
+                      <button
+                        className="gallery-arrow gallery-next"
+                        onClick={(e) => handleNextCardImage(project.id, e)}
+                        aria-label="Next image"
+                      >
+                        ›
+                      </button>
+                      <div className="gallery-counter">
+                        {(cardImageIndex[project.id] || 0) + 1} / {project.images.length}
+                      </div>
+                    </>
+                  )}
+                  {project.images[cardImageIndex[project.id] || 0].caption && (
+                    <div className="card-image-caption">
+                      {project.images[cardImageIndex[project.id] || 0].caption}
+                    </div>
+                  )}
                 </>
-              )}
-              {project.images[cardImageIndex[project.id] || 0].caption && (
-                <div className="card-image-caption">
-                  {project.images[cardImageIndex[project.id] || 0].caption}
-                </div>
+              ) : (
+                <div className="no-image">No image available</div>
               )}
             </div>
             <div className="project-info">
@@ -195,8 +218,10 @@ const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
               ×
             </button>
             <div className="modal-image">
-              <img src={selectedProject.images[currentImageIndex].src} alt={selectedProject.title} />
-              {selectedProject.images.length > 1 && (
+              {selectedProject.images.length > 0 ? (
+                <>
+                  <img src={selectedProject.images[currentImageIndex].src} alt={selectedProject.title} />
+                  {selectedProject.images.length > 1 && (
                 <>
                   <button
                     className="gallery-arrow gallery-prev"
@@ -216,9 +241,13 @@ const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
                     {currentImageIndex + 1} / {selectedProject.images.length}
                   </div>
                 </>
+                  )}
+                </>
+              ) : (
+                <div className="no-image">No image available</div>
               )}
             </div>
-            {selectedProject.images[currentImageIndex].caption && (
+            {selectedProject.images.length > 0 && selectedProject.images[currentImageIndex].caption && (
               <div className="modal-image-caption">
                 {selectedProject.images[currentImageIndex].caption}
               </div>
