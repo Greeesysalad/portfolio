@@ -35,9 +35,9 @@ function App() {
     return () => window.removeEventListener('popstate', handlePopState)
   }, [currentPage])
 
-  // Handle scroll behavior for projects page
+  // Handle scroll behavior for the pages that should hide the native scrollbar
   useEffect(() => {
-    if (currentPage === 'projects') {
+    if (currentPage === 'projects' || currentPage === 'home' || currentPage === 'about') {
       document.body.classList.add('no-scroll')
     } else {
       document.body.classList.remove('no-scroll')
