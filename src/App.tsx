@@ -90,6 +90,10 @@ function App() {
       <main className="content">
         {renderPage()}
       </main>
+      <footer className="site-footer">
+        <span className="site-footer__icon" aria-hidden="true">©</span>
+        <span>2026 Ted Yao</span>
+      </footer>
     </div>
   )
 }
