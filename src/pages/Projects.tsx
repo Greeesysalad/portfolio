@@ -98,12 +98,11 @@ const projects: Project[] = [
     {
     id: 4,
     title: 'Pool Environment Render',
-    description: '~',
+    description: 'Designed and rendered a 30-second animation of a pool environment inspired by artist Jared Pike. Implemented hard-surface polygonal modeling, custom procedural shading networks, and keyframe animations entirely within Blender.',
     details:
-    '• ~\n'+
-    '• ~\n'+
-    '• ~\n'+
-    '• ~',
+    '• Created a clean, non-destructive mesh architecture using hard surface modeling techniques, ensuring consistent face weighting and optimal polygon flow.\n'+
+    '• Applied modular PBR (Physically Based Rendering) tile textures across cleanly unwrapped UV coordinates to guarantee realistic surface material responses under direct lighting.\n'+
+    '• Created cat asset from scratch by translating real-world photographic references into a proportional 3D digital model.',
     images: [
       { src: pool1, caption: 'rendered camera view of scene' },
       { src: pool2, caption: 'un-rendered camera view of scene' },

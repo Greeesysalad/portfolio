@@ -8,8 +8,8 @@ interface AboutProps {
 }
 
 const techStack = [
-  'C/C++', 'Python','vite', 'Git', 'MATLAB', 'Solidworks','Autodesk Inventor', 
-  'blender', 'M365 suite', 'Microsoft Power Platform'
+  'C', 'C++', 'Python','TypeScript', 'React', 'Vite', 'Bash', 'Git', 'Github', 'MATLAB', 'SolidWorks','Autodesk Inventor', 
+  'Blender', 'Microsoft Power Platform'
 ]
 
 const socials = [
