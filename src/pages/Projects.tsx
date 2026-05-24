@@ -10,6 +10,14 @@ import Exo2 from '../assets/Exo_closeup.JPG'
 import Exo3 from '../assets/Exo_ManufacturedParts.png'
 import Exo4 from '../assets/Exo_CAD.png'
 
+import hand1 from '../assets/hand_gojo.png'
+import hand2 from '../assets/hand_sukuna.png'
+import hand3 from '../assets/hand_wolf.png'
+import hand4 from '../assets/hand_nue.png'
+import hand5 from '../assets/hand_toad.png'
+import hand6 from '../assets/hand_neutral.png'
+
+
 type Page = 'home' | 'about' | 'projects'
 
 interface Project {
@@ -64,13 +72,19 @@ const projects: Project[] = [
   {
     id: 3,
     title: 'Computer Vision Hand Sign Detector',
-    description: '',
+    description: 'Python-based computer vision application developed in collaboration with Carlson Zheng;  implemented a gesture-based control system that detects hand signs from the anime Jujutsu Kaisen with 95% accuracy using a live video feed, translating them into video game commands via simulated keyboard inputs.',
     details:
-      '• ~\n'+
-      '• ~\n'+
-      '• ~\n'+
-      '• ~',
+      '• Processed live video feeds using OpenCV and MediaPipe to detect hands and extract 3D spatial landmarks, generating real-time coordinate matrices from single and dual-hand inputs.\n'+
+      '• Developed a Python data-logging script that processes image directories to detect hand regions, extracting 3D landmarks and automatically structuring the coordinate streams into Pandas DataFrames based on filename labels.\n'+
+      '• Built and evaluated a multi-class TensorFlow/Keras neural network, using Scikit-learn to optimize training performance and achieve a 95%+ recognition accuracy when mapping spatial coordinates to specific Jujutsu Kaisen gestures.\n'+
+      '• Utilized Git and GitHub for version control, managing parallel feature development through strategic branching and collaborative pull requests.',
     images: [
+      { src: hand1, caption: "Successful hand sign classification for 'infinite void'" },
+      { src: hand2, caption: "Successful hand sign classification for 'malevolent shrine'" },
+      { src: hand3, caption: "Successful hand sign classification for 'divine dog'" },
+      { src: hand4, caption: "Successful hand sign classification for 'nue'" },
+      { src: hand5, caption: "Successful hand sign classification for 'toad'" },
+      { src: hand6, caption: "Successful hand sign classification for neutral hand position" },
     ],
     github: 'https://github.com/carlzhng/domain-computer-vision',
   },
