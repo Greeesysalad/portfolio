@@ -55,7 +55,7 @@ const projects: Project[] = [
     website: 'https://www.macexo.com/'
   },
   {
-    id: 2,
+    id: 3,
     title: 'Adaptive Writing Aid',
     description: 'Developed a personalized assistive device for a client with Multiple Sclerosis to assist with fine motor writing capabilities; Designed using 3D structured light scanning and mesh modeling in blender to create a custom ergonomic interface precisely matching the user’s hand geometry, ensuring optimal pressure distribution and stability during use. ',
     details:
@@ -70,7 +70,7 @@ const projects: Project[] = [
     ],
   },
   {
-    id: 3,
+    id: 2,
     title: 'Computer Vision Hand Sign Detector',
     description: 'Python-based computer vision application developed in collaboration with Carlson Zheng;  implemented a gesture-based control system that detects hand signs from the anime Jujutsu Kaisen with 95% accuracy using a live video feed, translating them into video game commands via simulated keyboard inputs.',
     details:
