@@ -54,21 +54,7 @@ const projects: Project[] = [
     github: 'https://github.com/McMaster-Exoskeleton',
     website: 'https://www.macexo.com/'
   },
-  {
-    id: 3,
-    title: 'Adaptive Writing Aid',
-    description: 'Developed a personalized assistive device for a client with Multiple Sclerosis to assist with fine motor writing capabilities; Designed using 3D structured light scanning and mesh modeling in blender to create a custom ergonomic interface precisely matching the user’s hand geometry, ensuring optimal pressure distribution and stability during use. ',
-    details:
-    '• Collaborated directly with a client with Multiple Sclerosis to develop a personalized assistive writing aid tailored to their specific functional requirements.\n'+
-    '• Utilized 3D scanning to capture high-resolution topological meshes of the user’s hand geometry for precision-fit modeling.\n'+
-    '• Engineered ergonomic housing in Blender using mesh modeling techniques to wrap device geometry around the user’s unique finger orientation.\n'+
-    '• Executed an iterative rapid prototyping workflow with 3D printing to validate grip comfort and mechanical stability through live user trials.',
-    images: [
-      { src: Adaptive1, caption: 'Demonstration of device in use' },
-      { src: Adaptive2, caption: 'Isolated view of device' },
-      { src: Adaptive3, caption: 'CAD model of device in blender' },
-    ],
-  },
+
   {
     id: 2,
     title: 'Computer Vision Hand Sign Detector',
@@ -87,6 +73,22 @@ const projects: Project[] = [
       { src: hand6, caption: "Successful hand sign classification for neutral hand position" },
     ],
     github: 'https://github.com/carlzhng/domain-computer-vision',
+  },
+  
+  {
+    id: 3,
+    title: 'Adaptive Writing Aid',
+    description: 'Developed a personalized assistive device for a client with Multiple Sclerosis to assist with fine motor writing capabilities; Designed using 3D structured light scanning and mesh modeling in blender to create a custom ergonomic interface precisely matching the user’s hand geometry, ensuring optimal pressure distribution and stability during use. ',
+    details:
+    '• Collaborated directly with a client with Multiple Sclerosis to develop a personalized assistive writing aid tailored to their specific functional requirements.\n'+
+    '• Utilized 3D scanning to capture high-resolution topological meshes of the user’s hand geometry for precision-fit modeling.\n'+
+    '• Engineered ergonomic housing in Blender using mesh modeling techniques to wrap device geometry around the user’s unique finger orientation.\n'+
+    '• Executed an iterative rapid prototyping workflow with 3D printing to validate grip comfort and mechanical stability through live user trials.',
+    images: [
+      { src: Adaptive1, caption: 'Demonstration of device in use' },
+      { src: Adaptive2, caption: 'Isolated view of device' },
+      { src: Adaptive3, caption: 'CAD model of device in blender' },
+    ],
   },
 ]
 
