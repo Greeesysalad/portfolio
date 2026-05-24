@@ -17,6 +17,10 @@ import hand4 from '../assets/hand_nue.png'
 import hand5 from '../assets/hand_toad.png'
 import hand6 from '../assets/hand_neutral.png'
 
+import pool1 from '../assets/pool_render.png'
+import pool2 from '../assets/pool_unrendered.png'
+import pool3 from '../assets/pool_cat.png'
+
 
 type Page = 'home' | 'about' | 'projects'
 
@@ -74,7 +78,7 @@ const projects: Project[] = [
     ],
     github: 'https://github.com/carlzhng/domain-computer-vision',
   },
-  
+
   {
     id: 3,
     title: 'Adaptive Writing Aid',
@@ -90,6 +94,23 @@ const projects: Project[] = [
       { src: Adaptive3, caption: 'CAD model of device in blender' },
     ],
   },
+
+    {
+    id: 4,
+    title: 'Pool Environment Render',
+    description: '~',
+    details:
+    '• ~\n'+
+    '• ~\n'+
+    '• ~\n'+
+    '• ~',
+    images: [
+      { src: pool1, caption: 'rendered camera view of scene' },
+      { src: pool2, caption: 'un-rendered camera view of scene' },
+      { src: pool3, caption: 'cat' },
+    ],
+    website: 'https://www.youtube.com/watch?v=_PZD7W4BIao'
+  }
 ]
 
 const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
