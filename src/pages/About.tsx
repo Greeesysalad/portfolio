@@ -12,7 +12,7 @@ const softwareProgramming = [
 ]
 
 const cadDigitalTools = [
-  'SolidWorks', 'Autodesk Inventor', 'Blender', 'Microsoft Power Platform', 'MATLAB', 'Benchling', 'SnapGene'
+  'SolidWorks', 'Autodesk Inventor', 'Blender', 'Microsoft Power Platform', 'MATLAB', 'Benchling'
 ]
 
 const labSkills = [
