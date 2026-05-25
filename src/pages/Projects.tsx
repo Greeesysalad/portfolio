@@ -30,7 +30,7 @@ import metal3 from '../assets/heavymetal_gell.png'
 
 
 type Page = 'home' | 'about' | 'projects'
-type ProjectSection = 'engineering' | 'synthetic-biology'
+type ProjectSection = 'engineering' | 'Research'
 
 interface Project {
   id: number
@@ -128,7 +128,7 @@ const projects: Project[] = [
   {
     id: 5,
     title: 'Aptamer-Based Allergen Detection System',
-    section: 'synthetic-biology',
+    section: 'Research',
     description: 'This theoretical project designs a whole-cell E. coli biosensor to rapidly detect food allergens (casein, galactose, and gliadin) using ligand-mediated aptazyme switches. The system features a single-input subsystem that expresses a blue chromoprotein (amilCP) upon detecting gliadin, alongside a dual-input regulatory AND gate requiring both casein and galactose to suppress amber stop codons and trigger a red chromoprotein (eforRed) readout. The multi-plasmid system was physically mapped out using Gibson and BioBrick assembly across pBBR1MCS-2 and pSB1C3 vector backbones. To validate the system, an ordinary differential equation (ODE) kinetic model was built completely in silico using MATLAB SimBiology, which verified rapid diagnostic expression timelines and successfully identified a critical metabolic degradation bottleneck in the AND gate system, providing a quantitative foundation to guide future genetic circuit optimization.',
     details:
     '• Designed a theoretical multi-plasmid genetic circuit within a BL21(DE3) E. coli chassis to track casein, galactose, and gliadin.\n'+
@@ -145,7 +145,7 @@ const projects: Project[] = [
     {
     id: 6,
     title: 'Heavy Metal Biosensor',
-    section: 'synthetic-biology',
+    section: 'Research',
     description: "Developed and characterized a genetically engineered, whole-cell bacterial biosensor in E. coli designed to detect environmental copper contamination through colorimetric reporting. Utilizing BioBrick Amplified Insert Assembly, the endogenous copper-sensitive promoter sequence (pCusC) was successfully amplified and cloned upstream of a natural chromoprotein reporter gene (asPink) inside a promoterless plasmid vector. Chemically competent E. coli DH5α cells were transformed with the constructed expression vector using heat shock methods. The biosensor's efficacy was evaluated by quantifying reporter gene expression via UV spectrophotometry and microplate assays across various copper (II) sulfate concentrations.",
     details:
     '• Executed BioBrick Amplified Insert Assembly to clone a copper-sensitive pCusC promoter sequence upstream of an asPink chromoprotein reporter gene to engineer a whole-cell bacterial biosensor.\n'+
@@ -171,7 +171,7 @@ const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
   const captionRefs = useRef<Record<number, HTMLDivElement | null>>({})
 
   const engineeringProjects = projects.filter((project) => project.section === 'engineering')
-  const syntheticBiologyProjects = projects.filter((project) => project.section === 'synthetic-biology')
+  const syntheticBiologyProjects = projects.filter((project) => project.section === 'Research')
   const visibleProjects = activeSection === 'engineering' ? engineeringProjects : syntheticBiologyProjects
   const readMoreText = 'read more'
 
@@ -454,11 +454,11 @@ const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
         </button>
         <button
           type="button"
-          className={`projects-section-button ${activeSection === 'synthetic-biology' ? 'active' : ''}`}
-          onClick={() => setActiveSection('synthetic-biology')}
-          aria-pressed={activeSection === 'synthetic-biology'}
+          className={`projects-section-button ${activeSection === 'Research' ? 'active' : ''}`}
+          onClick={() => setActiveSection('Research')}
+          aria-pressed={activeSection === 'Research'}
         >
-          Synthetic Biology
+          Research
         </button>
       </div>
       <div className="projects-grid">

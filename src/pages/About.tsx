@@ -12,20 +12,7 @@ const softwareProgramming = [
 ]
 
 const cadDigitalTools = [
-  'SolidWorks', 'Autodesk Inventor', 'Blender', 'Microsoft Power Platform', 'MATLAB', 'Benchling'
-]
-
-const labSkills = [
-  'PCR',
-  'SDS-PAGE',
-  'Primer Design',
-  'Double Restriction Digests',
-  'Gel Electrophoresis',
-  'BioBrick Assembly',
-  'Golden Gate Assembly',
-  'Heat Shock Transformation',
-  'Spin Column Purification',
-  'BSL-2 Aseptic Techniques',
+  'SolidWorks', 'Autodesk Inventor', 'Blender', 'Microsoft Power Platform', 'MATLAB'
 ]
 
 const socials = [
@@ -81,14 +68,6 @@ const About: React.FC<AboutProps> = ({ onNavigate }) => {
               <div className="tech-tags">
                 {cadDigitalTools.map((tech) => (
                   <span key={tech} className="tech-tag">{tech}</span>
-                ))}
-              </div>
-            </div>
-            <div className="tech-stack lab-skills-stack">
-              <h3>Laboratory Skills</h3>
-              <div className="tech-tags">
-                {labSkills.map((skill) => (
-                  <span key={skill} className="tech-tag">{skill}</span>
                 ))}
               </div>
             </div>
