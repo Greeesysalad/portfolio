@@ -293,14 +293,37 @@ body {
 .projects-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 4rem;
+  padding-top: 1.5rem;
 }
 
-.page-title {
-  font-size: 2.5rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 3rem;
+.projects-section-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.projects-section-button {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-primary);
+  border-radius: 999px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  min-width: 240px;
+}
+
+.projects-section-button:hover {
+  border-color: var(--text-muted);
+}
+
+.projects-section-button.active {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
 }
 
 .projects-grid {
@@ -356,6 +379,26 @@ body {
   margin-bottom: 1.25rem;
 }
 
+.project-description-row {
+  margin-bottom: 1.25rem;
+}
+
+.project-description {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.project-read-more {
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-block;
+}
+
 .project-links {
   display: flex;
   gap: 1rem;
@@ -377,7 +420,8 @@ body {
 
 /* GitHub Icon */
 .github-icon,
-.website-icon {
+.website-icon,
+.pdf-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -390,7 +434,8 @@ body {
 }
 
 .github-icon:hover,
-.website-icon:hover {
+.website-icon:hover,
+.pdf-icon:hover {
   background-color: var(--border);
   border-color: var(--text-muted);
 }
@@ -606,7 +651,8 @@ body {
 
 /* Modal GitHub Icon */
 .modal-link.github-icon,
-.modal-link.website-icon {
+.modal-link.website-icon,
+.modal-link.pdf-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -617,7 +663,8 @@ body {
 }
 
 .modal-link.github-icon:hover,
-.modal-link.website-icon:hover {
+.modal-link.website-icon:hover,
+.modal-link.pdf-icon:hover {
   background: var(--border);
   border-color: var(--text-muted);
 }

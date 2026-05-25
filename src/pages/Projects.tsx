@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Globe } from 'lucide-react'
+import React, { useEffect, useRef, useState } from 'react'
+import { FileText, Globe } from 'lucide-react'
 
 import Adaptive1 from '../assets/AdaptiveWritingAid_Use.png'
 import Adaptive2 from '../assets/AdaptiveWritingAid.png'
@@ -21,17 +21,27 @@ import pool1 from '../assets/pool_render.png'
 import pool2 from '../assets/pool_unrendered.png'
 import pool3 from '../assets/pool_cat.png'
 
+import AptamerPdf from '../assets/Aptamer_Allergen_Biosensor.pdf'
+import AptamerGraphical from '../assets/graphical_abstract.png'
+
+import metal1 from '../assets/heavymetal_nocopper.jpg'
+import metal2 from '../assets/heavymetal_copper.jpg'
+import metal3 from '../assets/heavymetal_gell.png'
+
 
 type Page = 'home' | 'about' | 'projects'
+type ProjectSection = 'engineering' | 'synthetic-biology'
 
 interface Project {
   id: number
   title: string
+  section: ProjectSection
   description: string
   details: string
   images: { src: string; caption?: string }[]
   github?: string
   website?: string
+  pdf?: string
   live?: string
 }
 
@@ -43,17 +53,18 @@ const projects: Project[] = [
   {
     id: 1,
     title: 'Lower Limb Exoskeleton',
+    section: 'engineering',
     description: 'Mechanical Engineer for McMaster Exoskeleton; A muti-disaplinary design team developing an assistive lower-limb exoskeleton. Responsible for the mechanical structure of the exoskeleton, including the design and testing of custom linkage, waist, and mounting components using SolidWorks.',
     details:
       '• Optimized part geometries for additive manufacturing to minimize support material and ensure print reliability.\n'+
-      '• Managed tolerances and assembly dimensions using SolidWorks equations to maintain precision across 30+ interdependent components\n'+
+      '• Managed tolerances and assembly dimensions using SolidWorks equations to maintain precision across 40+ interdependent components\n'+
       '• Refined ergonomics through iterative rapid prototyping and physical testing to ensure the design maintained a natural range of motion.\n'+
       '• Utilized top-down assembly modeling to ensure mechanical fit and kinematic integrity for complex structural linkages.',
     images: [
       { src: Exo1, caption: 'Full-body view of exoskeleton in operation' },
       { src: Exo2, caption: 'Detailed view of the lower-limb actuation and structural design' },
-      { src: Exo3, caption: 'Manufactured exoskeleton linkage parts' },
       { src: Exo4, caption: 'SolidWorks assembly of right leg of lower-limb exoskeleton' },
+      { src: Exo3, caption: 'Manufactured exoskeleton linkage parts' },
     ],
     github: 'https://github.com/McMaster-Exoskeleton',
     website: 'https://www.macexo.com/'
@@ -62,6 +73,7 @@ const projects: Project[] = [
   {
     id: 2,
     title: 'Computer Vision Hand Sign Detector',
+    section: 'engineering',
     description: 'Python-based computer vision application developed in collaboration with Carlson Zheng;  implemented a gesture-based control system that detects hand signs from the anime Jujutsu Kaisen with 95% accuracy using a live video feed, translating them into video game commands via simulated keyboard inputs.',
     details:
       '• Processed live video feeds using OpenCV and MediaPipe to detect hands and extract 3D spatial landmarks, generating real-time coordinate matrices from single and dual-hand inputs.\n'+
@@ -82,6 +94,7 @@ const projects: Project[] = [
   {
     id: 3,
     title: 'Adaptive Writing Aid',
+    section: 'engineering',
     description: 'Developed a personalized assistive device for a client with Multiple Sclerosis to assist with fine motor writing capabilities; Designed using 3D structured light scanning and mesh modeling in blender to create a custom ergonomic interface precisely matching the user’s hand geometry, ensuring optimal pressure distribution and stability during use. ',
     details:
     '• Collaborated directly with a client with Multiple Sclerosis to develop a personalized assistive writing aid tailored to their specific functional requirements.\n'+
@@ -98,6 +111,7 @@ const projects: Project[] = [
     {
     id: 4,
     title: 'Pool Environment Render',
+    section: 'engineering',
     description: 'Designed and rendered a 30-second animation of a pool environment inspired by artist Jared Pike. Implemented hard-surface polygonal modeling, custom procedural shading networks, and keyframe animations entirely within Blender.',
     details:
     '• Created a clean, non-destructive mesh architecture using hard surface modeling techniques, ensuring consistent face weighting and optimal polygon flow.\n'+
@@ -109,6 +123,40 @@ const projects: Project[] = [
       { src: pool3, caption: 'cat' },
     ],
     website: 'https://www.youtube.com/watch?v=_PZD7W4BIao'
+  },
+
+  {
+    id: 5,
+    title: 'Aptamer-Based Allergen Biosensor Design',
+    section: 'synthetic-biology',
+    description: 'This theoretical project designs a whole-cell E. coli biosensor to rapidly detect food allergens (casein, galactose, and gliadin) using ligand-mediated aptazyme switches. The system features a single-input subsystem that expresses a blue chromoprotein (amilCP) upon detecting gliadin, alongside a dual-input regulatory AND gate requiring both casein and galactose to suppress amber stop codons and trigger a red chromoprotein (eforRed) readout. The multi-plasmid system was physically mapped out using Gibson and BioBrick assembly across pBBR1MCS-2 and pSB1C3 vector backbones. To validate the system, an ordinary differential equation (ODE) kinetic model was built completely in silico using MATLAB SimBiology, which verified rapid diagnostic expression timelines and successfully identified a critical metabolic degradation bottleneck in the AND gate system, providing a quantitative foundation to guide future genetic circuit optimization.',
+    details:
+    '• Designed a theoretical multi-plasmid genetic circuit within a BL21(DE3) E. coli chassis to track casein, galactose, and gliadin.\n'+
+    '• Constructed and simulated mathematical ODE models using MATLAB SimBiology to validate biosensor expression kinetics in silico, mapping system dynamics under varying ligand concentrations to verify visual detection limits.\n'+
+    '• Formulated genetic assembly and verification protocols detailing Gibson Assembly, BioBrick cloning sequences, and gel electrophoresis control criteria.\n'+
+    '• Mapped a dual-input T7 promoter AND gate logic loop to link multiple target ligands to distinct, color-coded chromoprotein readouts (amilCP and eforRed).\n'+
+    '• Modeled the in silico construction of the allergen-detection circuits using Benchling to generate primer sequences and visualize plasmid maps for Gibson and BioBrick assembly.',
+    images: [
+      { src: AptamerGraphical, caption: 'Graphical Abstract' },
+    ],
+    pdf: AptamerPdf,
+  },
+
+    {
+    id: 6,
+    title: 'Heavy Metal Biosensor',
+    section: 'synthetic-biology',
+    description: "Developed and characterized a genetically engineered, whole-cell bacterial biosensor in E. coli designed to detect environmental copper contamination through colorimetric reporting. Utilizing BioBrick Amplified Insert Assembly, the endogenous copper-sensitive promoter sequence (pCusC) was successfully amplified and cloned upstream of a natural chromoprotein reporter gene (asPink) inside a promoterless plasmid vector. Chemically competent E. coli DH5α cells were transformed with the constructed expression vector using heat shock methods. The biosensor's efficacy was evaluated by quantifying reporter gene expression via UV spectrophotometry and microplate assays across various copper (II) sulfate concentrations.",
+    details:
+    '• Executed BioBrick Amplified Insert Assembly to clone a copper-sensitive pCusC promoter sequence upstream of an asPink chromoprotein reporter gene to engineer a whole-cell bacterial biosensor.\n'+
+    '• Performed restriction enzyme double digests, silica-membrane spin column purifications, and heat-shock transformations into chemically competent E. coli DH5α.\n'+
+    '• Isolated plasmid DNA via alkaline lysis minipreps and verified successful genetic recombination through structural diagnostic digests and agarose gel electrophoresis.\n'+
+    '• Utilized Benchling to model plasmid architecture, map restriction sites, and design custom PCR primers optimized for target promoter amplification.',
+    images: [
+      { src: metal1, caption: 'Recombinant E. coli DH5α transformants on selective agar media in the absence of copper. Colonies display a standard white phenotype. Because copper ions are absent, the cloned pCusC promoter remains inactive, preventing the downstream expression of the asPink chromoprotein reporter gene and validating the tight transcriptional regulation of the biosensor circuit.' },
+      { src: metal2, caption: 'Phenotypic colorimetric response of recombinant E. coli DH5α transformants exposed to copper. Induced colonies display a distinct pinkish-black coloration, confirming successful whole-cell biosensor activation. The presence of copper (II) sulfate triggers the heavy metal-sensitive pCusC promoter, driving expression of the intracellular asPink chromoprotein reporter.' },
+      { src: metal3, caption: 'Structural verification of recombinant plasmids via agarose gel electrophoresis. Fragment separation of diagnostic restriction digests alongside a 1 kb DNA ladder. Well 8 displays the digested promoterless plasmid control, while Well 9 displays the double-digested pCusAsPink plasmid, where the presence of the released insert band validates successful molecular cloning of the copper-sensitive pCusC promoter.' }
+    ],
   }
 ]
 
@@ -116,24 +164,249 @@ const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0)
   const [cardImageIndex, setCardImageIndex] = useState<{ [key: number]: number }>({})
+  const [activeSection, setActiveSection] = useState<ProjectSection>('engineering')
+  const [previewTextByProject, setPreviewTextByProject] = useState<Record<number, { text: string; hasOverflow: boolean }>>({})
+  const [captionPreviewByProject, setCaptionPreviewByProject] = useState<Record<number, { text: string; hasOverflow: boolean }>>({})
+  const descriptionRefs = useRef<Record<number, HTMLParagraphElement | null>>({})
+  const captionRefs = useRef<Record<number, HTMLDivElement | null>>({})
+
+  const engineeringProjects = projects.filter((project) => project.section === 'engineering')
+  const syntheticBiologyProjects = projects.filter((project) => project.section === 'synthetic-biology')
+  const visibleProjects = activeSection === 'engineering' ? engineeringProjects : syntheticBiologyProjects
+  const readMoreText = 'read more'
+
+  useEffect(() => {
+    if (selectedProject && !visibleProjects.some((project) => project.id === selectedProject.id)) {
+      setSelectedProject(null)
+      setCurrentImageIndex(0)
+    }
+  }, [selectedProject, visibleProjects])
+
+  useEffect(() => {
+    const nextPreviewTextByProject = { ...previewTextByProject }
+    let hasChanged = false
+
+    visibleProjects.forEach((project) => {
+      const element = descriptionRefs.current[project.id]
+
+      if (!element) {
+        return
+      }
+
+      const lineHeight = parseFloat(getComputedStyle(element).lineHeight) || 22.4
+      const width = element.clientWidth
+      const measure = document.createElement('div')
+      measure.style.position = 'fixed'
+      measure.style.left = '-9999px'
+      measure.style.top = '-9999px'
+      measure.style.width = `${width}px`
+      measure.style.font = getComputedStyle(element).font
+      measure.style.whiteSpace = 'normal'
+      measure.style.wordWrap = 'break-word'
+      measure.style.padding = '0'
+      measure.style.margin = '0'
+      document.body.appendChild(measure)
+
+      const words = project.description.split(/\s+/).filter(Boolean)
+      const maxHeight = lineHeight * 5
+      const suffixForMeasure = ' … read more'
+
+      const fits = (value: string) => {
+        measure.textContent = value
+        return measure.scrollWidth <= width && measure.scrollHeight <= maxHeight
+      }
+
+      const fitsEntireDescription = fits(project.description)
+
+      let best = project.description
+
+      if (!fitsEntireDescription) {
+        let low = 0
+        let high = words.length
+
+        while (low <= high) {
+          const mid = Math.floor((low + high) / 2)
+          const candidate = words.slice(0, mid).join(' ')
+
+          if (candidate.length === 0) {
+            best = ''
+            high = mid - 1
+            continue
+          }
+
+          if (fits(`${candidate}${suffixForMeasure}`)) {
+            best = candidate
+            low = mid + 1
+          } else {
+            high = mid - 1
+          }
+        }
+      }
+
+      document.body.removeChild(measure)
+
+      const hasOverflow = !fitsEntireDescription
+      const nextPreview = {
+        text: hasOverflow ? best : project.description,
+        hasOverflow,
+      }
+
+      if (
+        nextPreviewTextByProject[project.id]?.text !== nextPreview.text ||
+        nextPreviewTextByProject[project.id]?.hasOverflow !== nextPreview.hasOverflow
+      ) {
+        nextPreviewTextByProject[project.id] = nextPreview
+        hasChanged = true
+      }
+    })
+
+    if (hasChanged) {
+      setPreviewTextByProject(nextPreviewTextByProject)
+    }
+  }, [previewTextByProject, visibleProjects])
+
+  useEffect(() => {
+    const nextCaptionPreviewByProject = { ...captionPreviewByProject }
+    let hasChanged = false
+
+    visibleProjects.forEach((project) => {
+      const currentCardImageIndex = cardImageIndex[project.id] || 0
+      const currentCaption = project.images[currentCardImageIndex]?.caption
+      const element = captionRefs.current[project.id]
+
+      if (!element || !currentCaption) {
+        return
+      }
+
+      const computedStyle = getComputedStyle(element)
+      const lineHeight = parseFloat(computedStyle.lineHeight) || 20
+      const paddingLeft = parseFloat(computedStyle.paddingLeft) || 0
+      const paddingRight = parseFloat(computedStyle.paddingRight) || 0
+      const width = Math.max(0, element.clientWidth - paddingLeft - paddingRight)
+      const measure = document.createElement('div')
+      measure.style.position = 'fixed'
+      measure.style.left = '-9999px'
+      measure.style.top = '-9999px'
+      measure.style.width = `${width}px`
+      measure.style.font = computedStyle.font
+      measure.style.whiteSpace = 'normal'
+      measure.style.wordWrap = 'break-word'
+      measure.style.padding = '0'
+      measure.style.margin = '0'
+      document.body.appendChild(measure)
+
+      const words = currentCaption.split(/\s+/).filter(Boolean)
+      const maxHeight = lineHeight
+      const suffixForMeasure = ' … read more'
+
+      const fits = (value: string) => {
+        measure.textContent = value
+        return measure.scrollWidth <= width && measure.scrollHeight <= maxHeight
+      }
+
+      const fitsEntireCaption = fits(currentCaption)
+      let best = currentCaption
+
+      if (!fitsEntireCaption) {
+        let low = 0
+        let high = words.length
+
+        while (low <= high) {
+          const mid = Math.floor((low + high) / 2)
+          const candidate = words.slice(0, mid).join(' ')
+
+          if (candidate.length === 0) {
+            best = ''
+            high = mid - 1
+            continue
+          }
+
+          if (fits(`${candidate}${suffixForMeasure}`)) {
+            best = candidate
+            low = mid + 1
+          } else {
+            high = mid - 1
+          }
+        }
+
+        if (best === currentCaption) {
+          const trimmedWords = words.slice(0, Math.max(0, words.length - 1))
+
+          while (trimmedWords.length > 0) {
+            const candidate = trimmedWords.join(' ')
+
+            if (fits(`${candidate}${suffixForMeasure}`)) {
+              best = candidate
+              break
+            }
+
+            trimmedWords.pop()
+          }
+
+          if (trimmedWords.length === 0 || !fits(`${best}${suffixForMeasure}`)) {
+            best = ''
+          }
+        }
+      }
+
+      document.body.removeChild(measure)
+
+      const hasOverflow = !fitsEntireCaption
+      const nextPreview = {
+        text: hasOverflow ? best : currentCaption,
+        hasOverflow,
+      }
+
+      if (
+        nextCaptionPreviewByProject[project.id]?.text !== nextPreview.text ||
+        nextCaptionPreviewByProject[project.id]?.hasOverflow !== nextPreview.hasOverflow
+      ) {
+        nextCaptionPreviewByProject[project.id] = nextPreview
+        hasChanged = true
+      }
+    })
+
+    if (hasChanged) {
+      setCaptionPreviewByProject(nextCaptionPreviewByProject)
+    }
+  }, [captionPreviewByProject, cardImageIndex, visibleProjects])
 
   const handleSelectProject = (project: Project) => {
     setSelectedProject(project)
-    setCurrentImageIndex(0)
+    setCurrentImageIndex(cardImageIndex[project.id] || 0)
+  }
+
+  const syncCardImageIndex = (projectId: number, nextIndex: number) => {
+    setCardImageIndex((prev) => ({
+      ...prev,
+      [projectId]: nextIndex,
+    }))
+  }
+
+  const closeSelectedProject = () => {
+    if (selectedProject) {
+      syncCardImageIndex(selectedProject.id, currentImageIndex)
+    }
+
+    setSelectedProject(null)
   }
 
   const handlePrevImage = (e: React.MouseEvent) => {
     e.stopPropagation()
-    setCurrentImageIndex((prev) =>
-      prev === 0 ? selectedProject!.images.length - 1 : prev - 1
-    )
+    setCurrentImageIndex((prev) => {
+      const nextIndex = prev === 0 ? selectedProject!.images.length - 1 : prev - 1
+      syncCardImageIndex(selectedProject!.id, nextIndex)
+      return nextIndex
+    })
   }
 
   const handleNextImage = (e: React.MouseEvent) => {
     e.stopPropagation()
-    setCurrentImageIndex((prev) =>
-      prev === selectedProject!.images.length - 1 ? 0 : prev + 1
-    )
+    setCurrentImageIndex((prev) => {
+      const nextIndex = prev === selectedProject!.images.length - 1 ? 0 : prev + 1
+      syncCardImageIndex(selectedProject!.id, nextIndex)
+      return nextIndex
+    })
   }
 
   const handlePrevCardImage = (projectId: number, e: React.MouseEvent) => {
@@ -170,9 +443,30 @@ const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
 
   return (
     <div className="page projects-page">
-      <h2 className="page-title">Projects</h2>
+      <div className="projects-section-switcher">
+        <button
+          type="button"
+          className={`projects-section-button ${activeSection === 'engineering' ? 'active' : ''}`}
+          onClick={() => setActiveSection('engineering')}
+          aria-pressed={activeSection === 'engineering'}
+        >
+          Engineering
+        </button>
+        <button
+          type="button"
+          className={`projects-section-button ${activeSection === 'synthetic-biology' ? 'active' : ''}`}
+          onClick={() => setActiveSection('synthetic-biology')}
+          aria-pressed={activeSection === 'synthetic-biology'}
+        >
+          Synthetic Biology
+        </button>
+      </div>
       <div className="projects-grid">
-        {projects.map((project) => (
+        {visibleProjects.map((project) => {
+          const currentCardImageIndex = cardImageIndex[project.id] || 0
+          const currentCardImage = project.images[currentCardImageIndex]
+
+          return (
           <div 
             key={project.id} 
             className="project-card"
@@ -181,7 +475,7 @@ const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
             <div className="project-image">
               {project.images.length > 0 ? (
                 <>
-                  <img src={project.images[cardImageIndex[project.id] || 0].src} alt={project.title} />
+                  <img src={currentCardImage.src} alt={project.title} />
                   {project.images.length > 1 && (
                     <>
                       <button
@@ -199,13 +493,35 @@ const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
                         ›
                       </button>
                       <div className="gallery-counter">
-                        {(cardImageIndex[project.id] || 0) + 1} / {project.images.length}
+                        {currentCardImageIndex + 1} / {project.images.length}
                       </div>
                     </>
                   )}
-                  {project.images[cardImageIndex[project.id] || 0].caption && (
-                    <div className="card-image-caption">
-                      {project.images[cardImageIndex[project.id] || 0].caption}
+                  {currentCardImage.caption && (
+                    <div
+                      className="card-image-caption"
+                      ref={(element) => {
+                        captionRefs.current[project.id] = element
+                      }}
+                    >
+                      {captionPreviewByProject[project.id]?.text || currentCardImage.caption}
+                      {captionPreviewByProject[project.id]?.hasOverflow && (
+                        <>
+                          {' '}
+                          <span aria-hidden="true">…</span>{' '}
+                          <span
+                            role="button"
+                            tabIndex={0}
+                            className="project-read-more"
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              handleSelectProject(project)
+                            }}
+                          >
+                            {readMoreText}
+                          </span>
+                        </>
+                      )}
                     </div>
                   )}
                 </>
@@ -215,7 +531,33 @@ const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
             </div>
             <div className="project-info">
               <h3>{project.title}</h3>
-              <p>{project.description}</p>
+              <div className="project-description-row">
+                <p
+                  ref={(element) => {
+                    descriptionRefs.current[project.id] = element
+                  }}
+                  className="project-description"
+                >
+                  {previewTextByProject[project.id]?.text || project.description}
+                  {previewTextByProject[project.id]?.hasOverflow && (
+                    <>
+                      {' '}
+                      <span aria-hidden="true">…</span>{' '}
+                      <span
+                        role="button"
+                        tabIndex={0}
+                        className="project-read-more"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          handleSelectProject(project)
+                        }}
+                      >
+                        {readMoreText}
+                      </span>
+                    </>
+                  )}
+                </p>
+              </div>
               <div className="project-links">
                 {project.github && (
                   <a 
@@ -242,6 +584,18 @@ const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
                     <Globe size={16} strokeWidth={2} />
                   </a>
                 )}
+                {project.pdf && (
+                  <a
+                    href={project.pdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link pdf-icon"
+                    onClick={(e) => e.stopPropagation()}
+                    aria-label="Open project PDF"
+                  >
+                    <FileText size={16} strokeWidth={2} />
+                  </a>
+                )}
                 {project.live && (
                   <a 
                     href={project.live} 
@@ -256,15 +610,16 @@ const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
               </div>
             </div>
           </div>
-        ))}
+          )
+        })}
       </div>
 
       {selectedProject && (
-        <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
+        <div className="modal-overlay" onClick={closeSelectedProject}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
             <button 
               className="modal-close"
-              onClick={() => setSelectedProject(null)}
+              onClick={closeSelectedProject}
             >
               ×
             </button>
@@ -340,6 +695,17 @@ const Projects: React.FC<ProjectsProps> = ({ onNavigate }) => {
                     aria-label="Open project website"
                   >
                     <Globe size={16} strokeWidth={2} />
+                  </a>
+                )}
+                {selectedProject.pdf && (
+                  <a
+                    href={selectedProject.pdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="modal-link pdf-icon"
+                    aria-label="Open project PDF"
+                  >
+                    <FileText size={16} strokeWidth={2} />
                   </a>
                 )}
                 {selectedProject.live && (
