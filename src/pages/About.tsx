@@ -12,6 +12,17 @@ const techStack = [
   'Blender', 'Microsoft Power Platform'
 ]
 
+const labSkills = [
+  'PCR',
+  'SDS-PAGE',
+  'Gel Electrophoresis',
+  'Spectrophotometry',
+  'BioBrick Assembly',
+  'Golden Gate Assembly',
+  'Heat Shock Transformation',
+  'BSL-2 Aseptic Technique',
+]
+
 const socials = [
   { 
     name: 'LinkedIn', 
@@ -51,12 +62,22 @@ const About: React.FC<AboutProps> = ({ onNavigate }) => {
             biomedical engineering. Click on the falling cats in the homepage for
             a surprise {":)"}
           </p>
-          <div className="tech-stack">
-            <h3>Technologies</h3>
-            <div className="tech-tags">
-              {techStack.map((tech) => (
-                <span key={tech} className="tech-tag">{tech}</span>
-              ))}
+          <div className="tech-stack-group">
+            <div className="tech-stack">
+              <h3>Technologies</h3>
+              <div className="tech-tags">
+                {techStack.map((tech) => (
+                  <span key={tech} className="tech-tag">{tech}</span>
+                ))}
+              </div>
+            </div>
+            <div className="tech-stack lab-skills-stack">
+              <h3>Laboratory Skills</h3>
+              <div className="tech-tags">
+                {labSkills.map((skill) => (
+                  <span key={skill} className="tech-tag">{skill}</span>
+                ))}
+              </div>
             </div>
           </div>
           <div className="socials">

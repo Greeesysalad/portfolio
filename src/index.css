@@ -230,8 +230,15 @@ body {
   margin-bottom: 2.5rem;
 }
 
-.tech-stack, .socials {
+.tech-stack-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   margin-bottom: 2rem;
+}
+
+.tech-stack, .socials {
+  margin-bottom: 0;
 }
 
 .tech-stack h3, .socials h3 {
