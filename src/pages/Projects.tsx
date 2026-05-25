@@ -21,7 +21,7 @@ import pool1 from '../assets/pool_render.png'
 import pool2 from '../assets/pool_unrendered.png'
 import pool3 from '../assets/pool_cat.png'
 
-import AptamerPdf from '../assets/Aptamer_Allergen_Biosensor.pdf'
+import AptamerPdf from '../assets/Aptamer_Allergen_Detection_System.pdf'
 import AptamerGraphical from '../assets/graphical_abstract.png'
 
 import metal1 from '../assets/heavymetal_nocopper.jpg'
