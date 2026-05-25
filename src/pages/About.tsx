@@ -12,17 +12,20 @@ const softwareProgramming = [
 ]
 
 const cadDigitalTools = [
-  'SolidWorks', 'Autodesk Inventor', 'Blender', 'Microsoft Power Platform', 'MATLAB'
+  'SolidWorks', 'Autodesk Inventor', 'Blender', 'Microsoft Power Platform', 'MATLAB', 'Benchling', 'SnapGene'
 ]
 
 const labSkills = [
   'PCR',
   'SDS-PAGE',
+  'Primer Design',
+  'Double Restriction Digests',
   'Gel Electrophoresis',
   'Spectrophotometry',
   'BioBrick Assembly',
   'Golden Gate Assembly',
   'Heat Shock Transformation',
+  'Spin Column Purification',
   'BSL-2 Aseptic Technique',
 ]
 
