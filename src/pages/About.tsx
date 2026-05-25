@@ -7,14 +7,17 @@ interface AboutProps {
   onNavigate: (page: Page) => void
 }
 
-const softwareProgramming = [
-  'C', 'C++', 'Python', 'TypeScript', 'React', 'Vite', 'Bash', 'Git'
-]
+const hardwareCad = [
+  'SolidWorks', 'Autodesk Inventor', 'Fusion 360', 'Blender', 'Arduino', 'Raspberry Pi'
+];
 
-const cadDigitalTools = [
-  'SolidWorks', 'Autodesk Inventor', 'Blender', 'Microsoft Power Platform', 'MATLAB'
-]
+const languagesSystems = [
+  'C', 'C++', 'Python', 'MATLAB', 'TypeScript', 'Bash', 'Linux Environment', 'Git'
+];
 
+const appsAutomation = [
+  'React', 'Vite', 'Microsoft Power Platform', 'Copilot Studio'
+];
 const socials = [
   { 
     name: 'LinkedIn', 
@@ -51,27 +54,41 @@ const About: React.FC<AboutProps> = ({ onNavigate }) => {
           <h2>About Me</h2>
           <p className="bio">
             Undergrad student at McMaster University studying Mechatronics and
-            biomedical engineering. Click on the falling cats in the homepage for
+            Biomedical Engineering. Click on the falling cats in the homepage for
             a surprise {":)"}
           </p>
           <div className="tech-stack-group">
+            {/* Category 1: Hardware & CAD */}
             <div className="tech-stack">
-              <h3>Software & Programming</h3>
+              <h3>Hardware & CAD</h3>
               <div className="tech-tags">
-                {softwareProgramming.map((tech) => (
+                {hardwareCad.map((tech) => (
                   <span key={tech} className="tech-tag">{tech}</span>
                 ))}
               </div>
             </div>
+
+            {/* Category 2: Languages & Systems */}
             <div className="tech-stack">
-              <h3>CAD & Digital Tools</h3>
+              <h3>Languages & Systems</h3>
               <div className="tech-tags">
-                {cadDigitalTools.map((tech) => (
+                {languagesSystems.map((tech) => (
+                  <span key={tech} className="tech-tag">{tech}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Category 3: Apps & Automation */}
+            <div className="tech-stack">
+              <h3>Apps & Automation</h3>
+              <div className="tech-tags">
+                {appsAutomation.map((tech) => (
                   <span key={tech} className="tech-tag">{tech}</span>
                 ))}
               </div>
             </div>
           </div>
+          
           <div className="socials">
             <h3>Connect</h3>
             <div className="social-links">
