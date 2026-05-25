@@ -127,7 +127,7 @@ const projects: Project[] = [
 
   {
     id: 5,
-    title: 'Aptamer-Based Allergen Biosensor Design',
+    title: 'Aptamer-Based Allergen Detection System',
     section: 'synthetic-biology',
     description: 'This theoretical project designs a whole-cell E. coli biosensor to rapidly detect food allergens (casein, galactose, and gliadin) using ligand-mediated aptazyme switches. The system features a single-input subsystem that expresses a blue chromoprotein (amilCP) upon detecting gliadin, alongside a dual-input regulatory AND gate requiring both casein and galactose to suppress amber stop codons and trigger a red chromoprotein (eforRed) readout. The multi-plasmid system was physically mapped out using Gibson and BioBrick assembly across pBBR1MCS-2 and pSB1C3 vector backbones. To validate the system, an ordinary differential equation (ODE) kinetic model was built completely in silico using MATLAB SimBiology, which verified rapid diagnostic expression timelines and successfully identified a critical metabolic degradation bottleneck in the AND gate system, providing a quantitative foundation to guide future genetic circuit optimization.',
     details:

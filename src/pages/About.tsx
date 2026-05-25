@@ -7,9 +7,12 @@ interface AboutProps {
   onNavigate: (page: Page) => void
 }
 
-const techStack = [
-  'C', 'C++', 'Python','TypeScript', 'React', 'Vite', 'Bash', 'Git', 'Github', 'MATLAB', 'SolidWorks','Autodesk Inventor', 
-  'Blender', 'Microsoft Power Platform'
+const softwareProgramming = [
+  'C', 'C++', 'Python', 'TypeScript', 'React', 'Vite', 'Bash', 'Git'
+]
+
+const cadDigitalTools = [
+  'SolidWorks', 'Autodesk Inventor', 'Blender', 'Microsoft Power Platform', 'MATLAB'
 ]
 
 const labSkills = [
@@ -64,9 +67,17 @@ const About: React.FC<AboutProps> = ({ onNavigate }) => {
           </p>
           <div className="tech-stack-group">
             <div className="tech-stack">
-              <h3>Technologies</h3>
+              <h3>Software & Programming</h3>
               <div className="tech-tags">
-                {techStack.map((tech) => (
+                {softwareProgramming.map((tech) => (
+                  <span key={tech} className="tech-tag">{tech}</span>
+                ))}
+              </div>
+            </div>
+            <div className="tech-stack">
+              <h3>CAD & Digital Tools</h3>
+              <div className="tech-tags">
+                {cadDigitalTools.map((tech) => (
                   <span key={tech} className="tech-tag">{tech}</span>
                 ))}
               </div>
