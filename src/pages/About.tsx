@@ -12,11 +12,11 @@ const hardwareCad = [
 ];
 
 const languagesSystems = [
-  'C', 'C++', 'Python', 'MATLAB', 'TypeScript', 'Bash', 'Linux Environment', 'Git'
+  'C', 'C++', 'Python', 'TypeScript', 'React'
 ];
 
 const appsAutomation = [
-  'React', 'Vite', 'Microsoft Power Platform', 'Copilot Studio'
+  'MATLAB','Linux','Bash','Git','Microsoft Power Platform','Copilot Studio'
 ];
 const socials = [
   { 
@@ -60,7 +60,7 @@ const About: React.FC<AboutProps> = ({ onNavigate }) => {
           <div className="tech-stack-group">
             {/* Category 1: Hardware & CAD */}
             <div className="tech-stack">
-              <h3>Hardware & CAD</h3>
+              <h3>CAD & Hardware</h3>
               <div className="tech-tags">
                 {hardwareCad.map((tech) => (
                   <span key={tech} className="tech-tag">{tech}</span>
@@ -68,9 +68,9 @@ const About: React.FC<AboutProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            {/* Category 2: Languages & Systems */}
+            {/* Category 2: Languages*/}
             <div className="tech-stack">
-              <h3>Languages & Systems</h3>
+              <h3>Languages</h3>
               <div className="tech-tags">
                 {languagesSystems.map((tech) => (
                   <span key={tech} className="tech-tag">{tech}</span>
@@ -80,7 +80,7 @@ const About: React.FC<AboutProps> = ({ onNavigate }) => {
 
             {/* Category 3: Apps & Automation */}
             <div className="tech-stack">
-              <h3>Apps & Automation</h3>
+              <h3>Platforms & Environments</h3>
               <div className="tech-tags">
                 {appsAutomation.map((tech) => (
                   <span key={tech} className="tech-tag">{tech}</span>
