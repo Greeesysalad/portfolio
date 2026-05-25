@@ -21,12 +21,11 @@ const labSkills = [
   'Primer Design',
   'Double Restriction Digests',
   'Gel Electrophoresis',
-  'Spectrophotometry',
   'BioBrick Assembly',
   'Golden Gate Assembly',
   'Heat Shock Transformation',
   'Spin Column Purification',
-  'BSL-2 Aseptic Technique',
+  'BSL-2 Aseptic Techniques',
 ]
 
 const socials = [
