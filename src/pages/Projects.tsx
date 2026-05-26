@@ -63,7 +63,7 @@ const projects: Project[] = [
     images: [
       { src: Exo1, caption: 'Full-body view of exoskeleton in operation' },
       { src: Exo2, caption: 'Detailed view of the lower-limb actuation and structural design' },
-      { src: Exo4, caption: 'SolidWorks assembly of right leg of lower-limb exoskeleton' },
+      { src: Exo4, caption: 'Full SolidWorks assembly of exoskeleton' },
       { src: Exo3, caption: 'Manufactured exoskeleton linkage parts' },
     ],
     github: 'https://github.com/McMaster-Exoskeleton',
