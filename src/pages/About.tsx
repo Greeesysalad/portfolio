@@ -70,7 +70,7 @@ const About: React.FC<AboutProps> = ({ onNavigate }) => {
 
             {/* Category 2: Languages*/}
             <div className="tech-stack">
-              <h3>Languagegit s</h3>
+              <h3>Languages</h3>
               <div className="tech-tags">
                 {languagesSystems.map((tech) => (
                   <span key={tech} className="tech-tag">{tech}</span>
