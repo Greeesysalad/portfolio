@@ -10,6 +10,8 @@ import Exo2 from '../assets/Exo_closeup.JPG'
 import Exo3 from '../assets/Exo_ManufacturedParts.png'
 import Exo4 from '../assets/Exo_CAD.png'
 
+import box1 from '../assets/box_adjustment_demo.gif'
+
 import hand1 from '../assets/hand_gojo.png'
 import hand2 from '../assets/hand_sukuna.png'
 import hand3 from '../assets/hand_wolf.png'
@@ -93,6 +95,20 @@ const projects: Project[] = [
 
   {
     id: 3,
+    title: 'Parametric Box Generator',
+    section: 'engineering',
+    description: 'Developed a dynamically scalable sliding-lid enclosure modeled in SolidWorks. Rather than relying on manual dimension adjustments, the two-part assembly is driven by a centralized text document. This allows for instant, error-free geometric resizing simply by updating external variables.',
+    details:
+    '• Linked dimensions across part files to an external text document using SolidWorks Equations, enabling simultaneous, automated updates across the assembly.\n'+
+    '• Structured the feature tree and assembly mates to scale reliably, ensuring the model rebuilds cleanly across a wide range of input parameters without geometric failures.\n'+
+    '• Created a highly reusable CAD template that eliminates the need to manually edit individual sketches when generating custom-sized enclosures.',
+    images: [
+      { src: box1, caption: 'Real-time assembly rebuild driven by external text file updates'},
+    ],
+  },
+
+  {
+    id: 4,
     title: 'Adaptive Writing Aid',
     section: 'engineering',
     description: 'Developed a personalized assistive device for a client with Multiple Sclerosis to assist with fine motor writing capabilities; Designed using 3D structured light scanning and mesh modeling in blender to create a custom ergonomic interface precisely matching the user’s hand geometry, ensuring optimal pressure distribution and stability during use. ',
@@ -108,8 +124,8 @@ const projects: Project[] = [
     ],
   },
 
-    {
-    id: 4,
+  {
+    id: 5,
     title: 'Pool Environment Render',
     section: 'engineering',
     description: 'Designed and rendered a 30-second animation of a pool environment inspired by artist Jared Pike. Implemented hard-surface polygonal modeling, custom procedural shading networks, and keyframe animations entirely within Blender.',
@@ -126,7 +142,7 @@ const projects: Project[] = [
   },
 
   {
-    id: 5,
+    id: 6,
     title: 'Aptamer-Based Allergen Detection System',
     section: 'Research',
     description: 'This theoretical project designs a whole-cell E. coli biosensor to rapidly detect food allergens (casein, galactose, and gliadin) using ligand-mediated aptazyme switches. The system features a single-input subsystem that expresses a blue chromoprotein (amilCP) upon detecting gliadin, alongside a dual-input regulatory AND gate requiring both casein and galactose to suppress amber stop codons and trigger a red chromoprotein (eforRed) readout. The multi-plasmid system was physically mapped out using Gibson and BioBrick assembly across pBBR1MCS-2 and pSB1C3 vector backbones. To validate the system, an ordinary differential equation (ODE) kinetic model was built completely in silico using MATLAB SimBiology, which verified rapid diagnostic expression timelines and successfully identified a critical metabolic degradation bottleneck in the AND gate system, providing a quantitative foundation to guide future genetic circuit optimization.',
@@ -143,7 +159,7 @@ const projects: Project[] = [
   },
 
     {
-    id: 6,
+    id: 7,
     title: 'Heavy Metal Biosensor',
     section: 'Research',
     description: "Developed and characterized a genetically engineered, whole-cell bacterial biosensor in E. coli designed to detect environmental copper contamination through colorimetric reporting. Utilizing BioBrick Amplified Insert Assembly, the endogenous copper-sensitive promoter sequence (pCusC) was successfully amplified and cloned upstream of a natural chromoprotein reporter gene (asPink) inside a promoterless plasmid vector. Chemically competent E. coli DH5α cells were transformed with the constructed expression vector using heat shock methods. The biosensor's efficacy was evaluated by quantifying reporter gene expression via UV spectrophotometry and microplate assays across various copper (II) sulfate concentrations.",
