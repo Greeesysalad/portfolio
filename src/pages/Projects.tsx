@@ -95,7 +95,7 @@ const projects: Project[] = [
 
   {
     id: 3,
-    title: 'Parametric Box Generator',
+    title: 'Scalable Sliding-Lid Enclosure',
     section: 'engineering',
     description: 'Developed a dynamically scalable sliding-lid enclosure modeled in SolidWorks. Rather than relying on manual dimension adjustments, the two-part assembly is driven by a centralized text document. This allows for instant, error-free geometric resizing simply by updating external variables.',
     details:
