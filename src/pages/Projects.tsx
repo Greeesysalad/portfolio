@@ -11,6 +11,8 @@ import Exo3 from '../assets/Exo_ManufacturedParts.png'
 import Exo4 from '../assets/Exo_CAD.png'
 
 import box1 from '../assets/box_adjustment_demo.gif'
+import box2 from '../assets/box2.png'
+import box3 from '../assets/box3.png'
 
 import hand1 from '../assets/hand_gojo.png'
 import hand2 from '../assets/hand_sukuna.png'
@@ -19,7 +21,7 @@ import hand4 from '../assets/hand_nue.png'
 import hand5 from '../assets/hand_toad.png'
 import hand6 from '../assets/hand_neutral.png'
 
-import pool1 from '../assets/pool_render.png'
+import pool1 from '../assets/pool.gif'
 import pool2 from '../assets/pool_unrendered.png'
 import pool3 from '../assets/pool_cat.png'
 
@@ -104,6 +106,8 @@ const projects: Project[] = [
     '• Created a highly reusable CAD template that eliminates the need to manually edit individual sketches when generating custom-sized enclosures.',
     images: [
       { src: box1, caption: 'Real-time assembly rebuild driven by external text file updates'},
+      { src: box2, caption: 'Physical prototypes generated from a single, variable-driven CAD model; lids closed'},
+      { src: box3, caption: 'Physical prototypes generated from a single, variable-driven CAD model; lids opened'},
     ],
   },
 
@@ -134,7 +138,7 @@ const projects: Project[] = [
     '• Applied modular PBR (Physically Based Rendering) tile textures across cleanly unwrapped UV coordinates to guarantee realistic surface material responses under direct lighting.\n'+
     '• Created cat asset from scratch by translating real-world photographic references into a proportional 3D digital model.',
     images: [
-      { src: pool1, caption: 'rendered camera view of scene' },
+      { src: pool1, caption: 'rendered animation of scene' },
       { src: pool2, caption: 'un-rendered camera view of scene' },
       { src: pool3, caption: 'cat' },
     ],
