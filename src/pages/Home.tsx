@@ -8,7 +8,6 @@ interface HomeProps {
 }
 
 const nameFont = { fontFamily: "'Merriweather', serif" }
-const bodyFont = { fontFamily: "'Quicksand', sans-serif"}
 
 const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   return (
@@ -19,14 +18,14 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           <h1 className="name" style={{ ...nameFont, fontWeight: 700 }}>
             Ted Yao
           </h1>
-          <p className="tagline" style={{ ...bodyFont, fontWeight: 400 }}>
+          <p className="tagline" style={{ fontWeight: 400 }}>
             Mechatronics & Biomedical Engineering
           </p>
           <div className="home-nav">
-            <button onClick={() => onNavigate('about')} className="home-btn" style={{ ...bodyFont, fontWeight: 600 }}>
+            <button onClick={() => onNavigate('about')} className="home-btn" style={{ fontWeight: 600 }}>
               About Me
             </button>
-            <button onClick={() => onNavigate('projects')} className="home-btn" style={{ ...bodyFont, fontWeight: 600 }}>
+            <button onClick={() => onNavigate('projects')} className="home-btn" style={{ fontWeight: 600 }}>
               Projects
             </button>
           </div>
