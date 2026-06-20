@@ -376,6 +376,7 @@ body {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
   overflow: hidden;
+  border-radius: 8px;
   transition: border-color 0.2s ease;
   cursor: pointer;
 }
