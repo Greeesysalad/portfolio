@@ -58,7 +58,7 @@ const projects: Project[] = [
     id: 1,
     title: 'Lower Limb Exoskeleton',
     section: 'engineering',
-    description: 'Mechanical Designer for McMaster Exoskeleton; A muti-disaplinary design team developing an assistive lower-limb exoskeleton. Responsible for the mechanical structure of the exoskeleton, including the design and testing of custom linkage, waist, and mounting components using SolidWorks.',
+    description: 'Mechanical Designer for McMaster Exoskeleton; A muti-disciplinary design team developing an assistive lower-limb exoskeleton. Responsible for the mechanical structure of the exoskeleton, including the design and testing of custom linkage, waist, and mounting components using SolidWorks.',
     details:
       '• Optimized part geometries for additive manufacturing to minimize support material and ensure print reliability.\n'+
       '• Managed tolerances and assembly dimensions using SolidWorks equations to maintain precision across 40+ interdependent components\n'+
