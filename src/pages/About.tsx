@@ -54,8 +54,8 @@ const About: React.FC<AboutProps> = ({ onNavigate }) => {
           <h2>About Me</h2>
           <p className="bio">
             Undergrad student at McMaster University studying Mechatronics and 
-            Biomedical Engineering {"&"} Equipment engineering Co-op 
-            at Kardium. Click on the falling cats in the homepage for
+            Biomedical Engineering. Equipment engineer Co-op 
+            {"@"} Kardium. Click on the falling cats in the homepage for
             a surprise {":)"}
           </p>
           <div className="tech-stack-group">
